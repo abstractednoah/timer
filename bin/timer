@@ -66,7 +66,7 @@ system_muted() {
 # Display ----------------------------------------------------------------------
 cleanup() {
   if [ -n "$TMUX" ]; then
-    tmux set-environment -u TMUX_TIMER
+    tmux set-environment -u TMUX_TIMER && tmux refresh-client -S
   else
     # reset window title
     printf "\033]0;\007"
@@ -85,7 +85,7 @@ cleanup() {
 update_tmux() {
     local value="${1}"
     if [ -n "${TMUX}" ]; then
-        tmux set-environment TMUX_TIMER "${value}"
+        tmux set-environment TMUX_TIMER "${value}" && tmux refresh-client -S
     fi
 }
 
