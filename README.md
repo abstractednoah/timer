@@ -3,6 +3,8 @@ timer – a Pomodoro/Interval Timer
 
 **timer** is a command line interval timer written in Bash.
 
+_NOTE/TODO: The README is out of date with this forked version._
+
 ### Features
 
 * Calming, serene alert tone inspired by Buddhist meditation bells
