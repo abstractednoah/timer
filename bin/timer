@@ -24,8 +24,8 @@ e.g., 90 seconds may be specified as ${_bd}1.5${_rg} or ${_bd}3/2${_rg}. If mult
 durations are specified, an alert will be triggered at the
 end of each interval.
 
-If in tmux, then the remaining diration is saved to the \$TMUX_TIMER environment
-variable of the local tmux session (see 'man tmux'); do with it what you want.
+If in tmux, then the remaining diration is saved to the \$TMUX_TIMER variable of
+the global tmux environment (see 'man tmux'); do with it what you want.
 
 Upon completion, a message is sent over 'notify-send'.
 
@@ -66,7 +66,7 @@ system_muted() {
 # Display ----------------------------------------------------------------------
 cleanup() {
   if [ -n "$TMUX" ]; then
-    tmux set-environment -u TMUX_TIMER && tmux refresh-client -S
+    tmux set-environment -gu TMUX_TIMER && tmux refresh-client -S
   else
     # reset window title
     printf "\033]0;\007"
@@ -85,7 +85,7 @@ cleanup() {
 update_tmux() {
     local value="${1}"
     if [ -n "${TMUX}" ]; then
-        tmux set-environment TMUX_TIMER "${value}" && tmux refresh-client -S
+        tmux set-environment -g TMUX_TIMER "${value}" && tmux refresh-client -S
     fi
 }
 
