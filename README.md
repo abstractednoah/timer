@@ -1,5 +1,5 @@
-timer – a Pomodoro/Interval Timer 
-==================================
+timer – a Pomodoro/Interval Timer
+=================================
 
 **timer** is a command line interval timer written in Bash.
 
@@ -11,15 +11,16 @@ _NOTE/TODO: The README is out of date with this forked version._
 * Set a simple countdown, or specify a set of intervals to time
 * Repeat interval sets _n_ times, or indefinitely
 
-### tmux-Aware Interface
+### Tmux Interface
 
-In a regular terminal session, remaining time is displayed in the window title.
+If in a tmux session, then the remaining duration is saved to the `$TMUX_TIMER`
+variable of the global tmux environment; do with this variable what you want
+(see `man tmux` for details). For instance, the author of this fork has the
+following line in his tmux configuation:
 
-![](https://raw.githubusercontent.com/rlue/i/master/timer/terminal.gif)
+    set -ga status-right "#{?TMUX_TIMER,⏲ #{TMUX_TIMER} ,}"
 
-In a tmux session, remaining time is displayed in the status bar beside the session name.
-
-![](https://raw.githubusercontent.com/rlue/i/master/timer/tmux.gif)
+which displays the timer in the right status bar iff the variable is set.
 
 Installation
 ------------
@@ -79,7 +80,7 @@ From [Quora][qr]:
 > Let’s say you meditate for 30 minutes. You can set the interval bell to ring
 > after 5 minutes, so you can spend the first 5 minutes settling/relaxing
 > yourself and your mind, and then begin the actual meditation practice when
-> the interval bell rings.  
+> the interval bell rings.
 
     $ timer 5 25
 
@@ -99,6 +100,13 @@ From [Wikipedia][pm]:
 Or to repeat this 135-minute set twice in a row,
 
     $ timer -r2 25 5 25 5 25 5 25 20
+
+#### Tea timer
+
+Use in conjunction with `notify-send` (or similar; this works on Ubuntu) to send
+desktop notification upon completion.
+
+    timer 3 && notify-send 'Tea time!'
 
 ### Troubleshooting
 

@@ -24,10 +24,8 @@ e.g., 90 seconds may be specified as ${_bd}1.5${_rg} or ${_bd}3/2${_rg}. If mult
 durations are specified, an alert will be triggered at the
 end of each interval.
 
-If in tmux, then the remaining diration is saved to the \$TMUX_TIMER variable of
+If in tmux, then the remaining duration is saved to the \$TMUX_TIMER variable of
 the global tmux environment (see 'man tmux'); do with it what you want.
-
-Upon completion, a message is sent over 'notify-send'.
 
 EOF
 }
@@ -118,8 +116,6 @@ print_completion_message() {
   case $(ps -o stat= -p $$) in
     *+*) printf "\r\e[K"
          echo "${msg}"
-         # TODO Handle if notify-send is missing.
-         notify-send "${msg}";;
   esac
 }
 
