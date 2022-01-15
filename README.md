@@ -16,7 +16,7 @@ _NOTE/TODO: The README is out of date with this forked version._
 If in a tmux session, then the remaining duration is saved to the `$TMUX_TIMER`
 variable of the global tmux environment; do with this variable what you want
 (see `man tmux` for details). For instance, the author of this fork has the
-following line in his tmux configuation:
+following line in his tmux configuration:
 
     set -ga status-right "#{?TMUX_TIMER,⏲ #{TMUX_TIMER} ,}"
 
